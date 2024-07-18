@@ -1,3 +1,4 @@
+import { Container } from '@/components/ui/container';
 import { cn } from '@/lib/cn';
 import type { Metadata } from 'next';
 import { Inconsolata, Inter, Lora } from 'next/font/google';
@@ -23,7 +24,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={cn(inter.variable, lora.variable, inconsolata.variable)}>
-				{children}
+				<Container as='main' className='py-[3.625rem]'>
+					{children}
+				</Container>
 			</body>
 		</html>
 	);

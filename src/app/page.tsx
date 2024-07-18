@@ -1,5 +1,11 @@
-'use client';
+import Logo from '@/assets/images/logo.svg';
 
 export default function Home() {
-	return <main></main>;
+	return (
+		<>
+			<header className='flex items-center'>
+				<Logo />
+			</header>
+		</>
+	);
 }
