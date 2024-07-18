@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: HomePageProps): Promise<Metadata> {
 	const word = await findWord(params.word?.[0]);
 
-	if (params.word?.length === 0) {
+	if (!params.word || params.word?.length === 0) {
 		return {
 			title: 'Dictionary',
 			description: 'A dictionary app',
