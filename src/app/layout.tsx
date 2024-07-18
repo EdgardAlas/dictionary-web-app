@@ -1,10 +1,9 @@
-import { Container } from '@/components/ui/container';
+import { MainLayout } from '@/components/layout/main-layout';
 import { cn } from '@/lib/cn';
+import { getConfig } from '@/utils/get-config';
 import type { Metadata } from 'next';
 import { Inconsolata, Inter, Lora } from 'next/font/google';
 import './globals.css';
-import { cookies } from 'next/headers';
-import { FontTypes } from '@/components/ui/font-switcher';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const lora = Lora({ subsets: ['latin'], variable: '--font-serif' });
@@ -23,8 +22,7 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const theme = cookies().get('theme')?.value;
-	const font = (cookies().get('font')?.value ?? 'sans') as FontTypes;
+	const { font, theme } = getConfig();
 
 	return (
 		<html lang='en'>
@@ -37,9 +35,7 @@ export default function RootLayout({
 					font
 				)}
 			>
-				<Container as='main' className='py-[1.4375rem] md:py-[3.625rem]'>
-					{children}
-				</Container>
+				<MainLayout>{children}</MainLayout>
 			</body>
 		</html>
 	);

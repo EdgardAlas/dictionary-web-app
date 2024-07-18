@@ -4,8 +4,10 @@ import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/cn';
 import { useState } from 'react';
 
+export type ThemeTypes = 'light' | 'dark';
+
 interface ThemeSwitcherProps {
-	theme?: 'light' | 'dark';
+	theme: ThemeTypes;
 }
 
 export const ThemeSwitcher = ({
