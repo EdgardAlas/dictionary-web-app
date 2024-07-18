@@ -16,8 +16,8 @@ export const Source = ({ source }: SourceProps) => {
 			<Typography variant={'body-s'} className='text-theme-gray-300 underline'>
 				Source
 			</Typography>
-			<a href={source} target='_blank' rel='noreferrer' className='underline'>
-				<Typography variant={'body-s'} className='inline-flex gap-2'>
+			<a href={source} target='_blank' rel='noreferrer'>
+				<Typography variant={'body-s'} className='inline-flex gap-2 underline'>
 					{source}
 					<NewWindow />
 				</Typography>

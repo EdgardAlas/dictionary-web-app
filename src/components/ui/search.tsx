@@ -9,34 +9,11 @@ import { useRef, useState, useTransition } from 'react';
 const errorMessage = 'Whoops, can’t be empty…';
 
 export const Search = () => {
-	const router = useRouter();
-	const [pending, startTransition] = useTransition();
-	const [error, setError] = useState<string | null>(null);
-	const params = useParams();
-	const inputRef = useRef<HTMLInputElement>(null);
+	const { handleSearch, handleOnChange, error, params, inputRef } = useSearch();
 
 	return (
 		<section className='mb-5 md:mb-[2.6875rem]'>
-			<form
-				className='relative'
-				onSubmit={(e) => {
-					e.preventDefault();
-					if (pending) {
-						return;
-					}
-					const search = (e.target as HTMLFormElement).search?.value;
-					if (!search.trim()) {
-						setError(errorMessage);
-						return;
-					}
-					startTransition(() => {
-						if (search) {
-							inputRef.current?.blur();
-							router.push(`/${search}`);
-						}
-					});
-				}}
-			>
+			<form className='relative' onSubmit={handleSearch}>
 				<label htmlFor='search' className='sr-only'>
 					Search
 				</label>
@@ -46,15 +23,7 @@ export const Search = () => {
 					defaultValue={params.word?.[0]}
 					name='search'
 					placeholder='Search for any word…'
-					onChange={(e) => {
-						if (e.target.value && error) {
-							setError(null);
-						}
-
-						if (!e.target.value) {
-							setError(errorMessage);
-						}
-					}}
+					onChange={handleOnChange}
 					className={cn(
 						'h-12 w-full rounded-[1rem] bg-gray-100 py-[0.875rem] pr-14 ps-6 text-base font-bold transition-[background-color] focus:outline focus:outline-theme-purple-100 dark:bg-theme-black-300 md:h-16 md:py-[1.1875rem] md:text-[1.25rem]',
 						{
@@ -77,4 +46,51 @@ export const Search = () => {
 			)}
 		</section>
 	);
+};
+
+const useSearch = () => {
+	const router = useRouter();
+	const [pending, startTransition] = useTransition();
+	const [error, setError] = useState<string | null>(null);
+	const params = useParams();
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (pending) {
+			return;
+		}
+		const search = (e.target as HTMLFormElement).search?.value;
+		if (!search.trim()) {
+			setError(errorMessage);
+			return;
+		}
+		startTransition(() => {
+			if (search) {
+				inputRef.current?.blur();
+				router.push(`/${search}`);
+			}
+		});
+	};
+
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.value && error) {
+			setError(null);
+		}
+
+		if (!e.target.value) {
+			setError(errorMessage);
+		}
+	};
+
+	return {
+		handleSearch,
+		handleOnChange,
+		error,
+		params,
+		inputRef,
+		pending,
+		startTransition,
+		router,
+	};
 };
