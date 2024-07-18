@@ -33,7 +33,7 @@ export const FontSwitcher = ({ font }: FontSwitcherProps) => {
 	};
 
 	return (
-		<section className='relative'>
+		<section className='relative z-20'>
 			<button
 				className='inline-flex h-6 items-center gap-4 text-[0.875rem] font-bold leading-6 md:text-[1.125rem]'
 				onClick={() => setIsDropdownOpen((prev) => !prev)}
