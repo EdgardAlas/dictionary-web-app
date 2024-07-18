@@ -3,6 +3,7 @@ import { cn } from '@/lib/cn';
 import type { Metadata } from 'next';
 import { Inconsolata, Inter, Lora } from 'next/font/google';
 import './globals.css';
+import { cookies } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const lora = Lora({ subsets: ['latin'], variable: '--font-serif' });
@@ -21,9 +22,18 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const theme = cookies().get('theme')?.value;
+
 	return (
 		<html lang='en'>
-			<body className={cn(inter.variable, lora.variable, inconsolata.variable)}>
+			<body
+				className={cn(
+					inter.variable,
+					lora.variable,
+					inconsolata.variable,
+					theme
+				)}
+			>
 				<Container as='main' className='py-[3.625rem]'>
 					{children}
 				</Container>
