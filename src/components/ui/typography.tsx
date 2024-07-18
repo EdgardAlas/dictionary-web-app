@@ -8,9 +8,9 @@ export const typographyCVA = cva('', {
 			'heading-l': 'text-[2rem] md:text-[4rem] md:leading-[4.8125rem]',
 			'heading-m':
 				'text-[1.125rem] leading-[1.5rem] md:text-[1.5rem] md:leading-[1.8125rem]',
-			'heading-s': 'md:text-[1.25rem] md:leading-[1.5rem]',
-			'body-m': 'md:text-[1.125rem] md:leading-[1.5rem]',
-			'body-s': 'md:text-[0.875rem] md:leading-[1.0625rem]',
+			'heading-s': 'text-base md:text-[1.25rem] md:leading-[1.5rem]',
+			'body-m': 'text-[0.9375rem] md:text-[1.125rem] md:leading-[1.5rem]',
+			'body-s': ' text-base md:text-[0.875rem] md:leading-[1.0625rem]',
 		},
 		fontWeight: {
 			regular: 'font-normal',

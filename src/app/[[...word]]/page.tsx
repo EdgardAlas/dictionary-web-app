@@ -1,3 +1,4 @@
+import { Meanings } from '@/components/ui/meanings';
 import { WordTitle } from '@/components/ui/word-title';
 import { getWordDefinition } from '@/services/dictionary';
 import { notFound } from 'next/navigation';
@@ -40,6 +41,7 @@ export default async function Home({ params }: HomePageProps) {
 				phonetic={wordList?.phonetic}
 				audio={wordList?.phonetics.find((item) => item.audio)?.audio}
 			/>
+			<Meanings meanings={wordList?.meanings} />
 		</>
 	);
 }

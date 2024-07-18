@@ -11,6 +11,8 @@ export interface Dictionary {
 export interface Meaning {
 	partOfSpeech: string;
 	definitions: Definition[];
+	synonyms: string[];
+	antonyms: string[];
 }
 
 export interface Definition {

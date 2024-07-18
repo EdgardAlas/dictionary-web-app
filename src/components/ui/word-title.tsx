@@ -10,7 +10,7 @@ interface WordTitleProps {
 
 export const WordTitle = ({ phonetic, audio, word }: WordTitleProps) => {
 	return (
-		<section className='flex justify-between'>
+		<section className='mb-7 flex justify-between md:mb-10'>
 			<section>
 				<Typography as='h1' variant={'heading-l'} fontWeight={'bold'}>
 					{word}
