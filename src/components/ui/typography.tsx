@@ -2,14 +2,15 @@ import { cn } from '@/lib/cn';
 import { cva, VariantProps } from 'class-variance-authority';
 import { ComponentPropsWithRef } from 'react';
 
-const typographyCVA = cva('', {
+export const typographyCVA = cva('', {
 	variants: {
 		variant: {
-			'heading-l': 'text-[4rem] leading-[4.8125rem]',
-			'heading-m': 'text-[1.5rem] leading-[1.8125rem]',
-			'heading-s': 'text-[1.25rem] leading-[1.5rem]',
-			'body-m': 'text-[1.125rem] leading-[1.5rem]',
-			'body-s': 'text-[0.875rem] leading-[1.0625rem]',
+			'heading-l': 'text-[2rem] md:text-[4rem] md:leading-[4.8125rem]',
+			'heading-m':
+				'text-[1.125rem] leading-[1.5rem] md:text-[1.5rem] md:leading-[1.8125rem]',
+			'heading-s': 'md:text-[1.25rem] md:leading-[1.5rem]',
+			'body-m': 'md:text-[1.125rem] md:leading-[1.5rem]',
+			'body-s': 'md:text-[0.875rem] md:leading-[1.0625rem]',
 		},
 		fontWeight: {
 			regular: 'font-normal',
