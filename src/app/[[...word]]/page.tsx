@@ -1,5 +1,4 @@
-import { PhoneticPlay } from '@/components/ui/phonetic-play';
-import { Typography } from '@/components/ui/typography';
+import { WordTitle } from '@/components/ui/word-title';
 import { getWordDefinition } from '@/services/dictionary';
 import { notFound } from 'next/navigation';
 
@@ -32,24 +31,11 @@ export default async function Home({ params }: HomePageProps) {
 
 	return (
 		<>
-			<section className='flex justify-between'>
-				<section>
-					<Typography as='h1' variant={'heading-l'} fontWeight={'bold'}>
-						{wordList?.word}
-					</Typography>
-					<Typography
-						as='p'
-						variant={'heading-m'}
-						className='text-theme-purple-100'
-					>
-						{wordList?.phonetic}
-					</Typography>
-				</section>
-
-				<PhoneticPlay
-					audio={wordList?.phonetics.find((item) => item.audio)?.audio}
-				/>
-			</section>
+			<WordTitle
+				word={wordList?.word}
+				phonetic={wordList?.phonetic}
+				audio={wordList?.phonetics.find((item) => item.audio)?.audio}
+			/>
 		</>
 	);
 }
