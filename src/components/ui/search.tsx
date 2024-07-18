@@ -35,7 +35,11 @@ export const Search = () => {
 					});
 				}}
 			>
+				<label htmlFor='search' className='sr-only'>
+					Search
+				</label>
 				<input
+					id='search'
 					defaultValue={params.word?.[0]}
 					name='search'
 					onChange={(e) => {
@@ -55,7 +59,12 @@ export const Search = () => {
 					)}
 					autoFocus
 				/>
-				<SearchIcon className='absolute right-6 top-1/2 -translate-y-1/2' />
+				<button
+					className='absolute right-6 top-1/2 -translate-y-1/2'
+					type='submit'
+				>
+					<SearchIcon />
+				</button>
 			</form>
 			{error && (
 				<Typography variant={'heading-s'} className='mt-2 text-theme-red-100'>

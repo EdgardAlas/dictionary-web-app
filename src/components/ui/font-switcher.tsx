@@ -23,6 +23,10 @@ export const FontSwitcher = ({ font }: FontSwitcherProps) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 	const handleFontChange = (font: FontTypes) => () => {
+		if (!isDropdownOpen) {
+			return;
+		}
+
 		setSelectedFont(font);
 		isDropdownOpen && setIsDropdownOpen(false);
 		document.cookie = `font=${font};`;
@@ -43,6 +47,8 @@ export const FontSwitcher = ({ font }: FontSwitcherProps) => {
 			</button>
 
 			<ul
+				aria-hidden={!isDropdownOpen}
+				tabIndex={isDropdownOpen ? 0 : -1}
 				className={cn(
 					'absolute right-0 top-[2.6875rem] flex w-[11.4375rem] flex-col gap-4 rounded-2xl bg-white p-[1.4375rem] transition-opacity dark:bg-theme-black-300',
 					{
@@ -55,6 +61,7 @@ export const FontSwitcher = ({ font }: FontSwitcherProps) => {
 			>
 				{options.map((option) => (
 					<li
+						tabIndex={isDropdownOpen ? 0 : -1}
 						key={option.value}
 						className={cn(
 							'cursor-pointer font-bold leading-6 hover:text-theme-purple-100',
@@ -63,11 +70,10 @@ export const FontSwitcher = ({ font }: FontSwitcherProps) => {
 								'text-theme-purple-100': selectedFont === option.value,
 							}
 						)}
-						role='button'
-						tabIndex={0}
-						onClick={handleFontChange(option.value)}
 					>
-						{option.title}
+						<button onClick={handleFontChange(option.value)}>
+							{option.title}
+						</button>
 					</li>
 				))}
 			</ul>

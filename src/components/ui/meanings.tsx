@@ -8,7 +8,7 @@ interface MeaningsProps {
 
 export const Meanings = ({ meanings }: MeaningsProps) => {
 	return (
-		<section className='grid gap-[60px] md:gap-[45px]'>
+		<section className='mb-12 grid gap-[60px] md:gap-[45px]'>
 			{meanings?.map((meaning, index) => (
 				<section key={index} className='grid gap-[1.875rem] md:gap-[2.8125rem]'>
 					<section className='relative flex items-center gap-4'>

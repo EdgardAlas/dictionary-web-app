@@ -1,3 +1,5 @@
+import { cache } from 'react';
+
 const endpoint = 'https://api.dictionaryapi.dev/api/v2/entries/en/<word>';
 
 export interface Dictionary {
@@ -6,6 +8,7 @@ export interface Dictionary {
 	phonetics: Phonetic[];
 	origin: string;
 	meanings: Meaning[];
+	sourceUrls: string[];
 }
 
 export interface Meaning {
@@ -40,3 +43,18 @@ export const getWordDefinition = async (word: string) => {
 	const data = await response.json();
 	return data as Dictionary[] | typeof NotFound;
 };
+
+export const findWord = cache(async (word: string) => {
+	console.log('Find word', word);
+	if (!word) {
+		return undefined;
+	}
+
+	const data = await getWordDefinition(word);
+
+	if ('title' in data) {
+		return undefined;
+	}
+
+	return data.find((item) => item.phonetics);
+});

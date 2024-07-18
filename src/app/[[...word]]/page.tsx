@@ -1,25 +1,30 @@
 import { Meanings } from '@/components/ui/meanings';
+import { Source } from '@/components/ui/source';
 import { WordTitle } from '@/components/ui/word-title';
-import { getWordDefinition } from '@/services/dictionary';
+import { findWord } from '@/services/dictionary';
 import { notFound } from 'next/navigation';
-
-const findWord = async (word: string) => {
-	if (!word) {
-		return undefined;
-	}
-
-	const data = await getWordDefinition(word);
-
-	if ('title' in data) {
-		return undefined;
-	}
-
-	return data.find((item) => item.phonetics);
-};
+import { Metadata } from 'next/types';
 
 interface HomePageProps {
 	params: {
 		word: string[];
+	};
+}
+
+export async function generateMetadata({
+	params,
+}: HomePageProps): Promise<Metadata> {
+	const word = await findWord(params.word?.[0]);
+
+	if (!word) {
+		return {
+			title: 'Word not found',
+		};
+	}
+
+	return {
+		title: word.word,
+		description: word.meanings?.[0].definitions?.[0].definition,
 	};
 }
 
@@ -28,20 +33,21 @@ export default async function Home({ params }: HomePageProps) {
 		notFound();
 	}
 
-	const wordList = await findWord(params.word?.[0]);
+	const word = await findWord(params.word?.[0]);
 
-	if (!wordList && params.word?.length) {
+	if (!word && params.word?.length) {
 		notFound();
 	}
 
 	return (
 		<>
 			<WordTitle
-				word={wordList?.word}
-				phonetic={wordList?.phonetic}
-				audio={wordList?.phonetics.find((item) => item.audio)?.audio}
+				word={word?.word}
+				phonetic={word?.phonetic}
+				audio={word?.phonetics.find((item) => item.audio)?.audio}
 			/>
-			<Meanings meanings={wordList?.meanings} />
+			<Meanings meanings={word?.meanings} />
+			<Source source={word?.sourceUrls?.[0]} />
 		</>
 	);
 }
