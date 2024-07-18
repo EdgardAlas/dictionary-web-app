@@ -4,7 +4,7 @@ import SearchIcon from '@/assets/images/icon-search.svg';
 import { Typography } from '@/components/ui/typography';
 import { cn } from '@/lib/cn';
 import { useParams, useRouter } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import { useRef, useState, useTransition } from 'react';
 
 const errorMessage = 'Whoops, can’t be empty…';
 
@@ -13,6 +13,7 @@ export const Search = () => {
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string | null>(null);
 	const params = useParams();
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	return (
 		<section className='mb-5 md:mb-[2.6875rem]'>
@@ -30,6 +31,7 @@ export const Search = () => {
 					}
 					startTransition(() => {
 						if (search) {
+							inputRef.current?.blur();
 							router.push(`/${search}`);
 						}
 					});
@@ -39,6 +41,7 @@ export const Search = () => {
 					Search
 				</label>
 				<input
+					ref={inputRef}
 					id='search'
 					defaultValue={params.word?.[0]}
 					name='search'
