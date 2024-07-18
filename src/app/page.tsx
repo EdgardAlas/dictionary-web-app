@@ -1,3 +1,5 @@
-export default async function Home() {
-	return <main>hello world</main>;
+'use client';
+
+export default function Home() {
+	return <main></main>;
 }
