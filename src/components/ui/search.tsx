@@ -45,6 +45,7 @@ export const Search = () => {
 					id='search'
 					defaultValue={params.word?.[0]}
 					name='search'
+					placeholder='Search for any word…'
 					onChange={(e) => {
 						if (e.target.value && error) {
 							setError(null);
@@ -57,7 +58,7 @@ export const Search = () => {
 					className={cn(
 						'h-12 w-full rounded-[1rem] bg-gray-100 py-[0.875rem] pr-14 ps-6 text-base font-bold transition-[background-color] focus:outline focus:outline-theme-purple-100 dark:bg-theme-black-300 md:h-16 md:py-[1.1875rem] md:text-[1.25rem]',
 						{
-							'!outline !outline-theme-red-100': error,
+							'!outline !outline-[1px] !outline-theme-red-100': error,
 						}
 					)}
 					autoFocus
