@@ -11,7 +11,7 @@ export const Switch = ({ ...props }: ComponentProps<'input'>) => {
 		>
 			<span className='sr-only'>{props.name}</span>
 			<input type='checkbox' className='peer sr-only' {...props}></input>
-			<span className='absolute left-[0.1875rem] top-1/2 inline-block h-[14px] w-[14px] -translate-y-1/2 rounded-full bg-white transition-[left] peer-checked:left-[1.4375rem]' />
+			<span className='absolute left-[0.1875rem] top-1/2 inline-block h-[0.875rem] w-[0.875rem] -translate-y-1/2 rounded-full bg-white transition-[left] peer-checked:left-[1.4375rem]' />
 		</label>
 	);
 };

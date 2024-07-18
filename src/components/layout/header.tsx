@@ -7,7 +7,7 @@ export const Header = () => {
 	const { font, theme } = getConfig();
 
 	return (
-		<header className='mb-[23px] flex items-center justify-between md:mb-[3.25rem]'>
+		<header className='mb-[1.4375rem] flex items-center justify-between md:mb-[3.25rem]'>
 			<Logo />
 			<section className='flex items-center gap-x-4 divide-x-2'>
 				<FontSwitcher font={font} />

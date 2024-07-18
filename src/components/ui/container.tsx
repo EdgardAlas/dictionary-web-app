@@ -15,7 +15,7 @@ export const Container = ({
 		<Component
 			{...props}
 			className={cn(
-				'mx-auto max-w-[20.4375rem] md:max-w-[43.0625rem] lg:max-w-[736px]',
+				'mx-auto max-w-[20.4375rem] md:max-w-[43.0625rem] lg:max-w-[46rem]',
 				className
 			)}
 		>
