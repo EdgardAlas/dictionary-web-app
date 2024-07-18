@@ -3,6 +3,10 @@ import { getWordDefinition } from '@/services/dictionary';
 import { notFound } from 'next/navigation';
 
 const findWord = async (word: string) => {
+	if (!word) {
+		return undefined;
+	}
+
 	const data = await getWordDefinition(word);
 
 	if ('title' in data) {
@@ -23,7 +27,7 @@ export default async function Home({ params }: HomePageProps) {
 		notFound();
 	}
 
-	const wordList = await findWord(params.word?.[0] ?? '');
+	const wordList = await findWord(params.word?.[0]);
 
 	if (!wordList && params.word?.length) {
 		notFound();
