@@ -13,7 +13,7 @@ export const Source = ({ source }: SourceProps) => {
 
 	return (
 		<section className='mb-12 flex flex-col gap-1 underline-offset-4 md:flex-row md:items-center md:gap-4'>
-			<Typography variant={'body-s'} className='text-theme-gray-300 underline'>
+			<Typography variant={'body-s'} className='text-theme-gray-300'>
 				Source
 			</Typography>
 			<a href={source} target='_blank' rel='noreferrer'>

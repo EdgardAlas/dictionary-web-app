@@ -30,9 +30,9 @@ export const Search = () => {
 							'!outline !outline-[1px] !outline-theme-red-100': error,
 						}
 					)}
-					autoFocus
 				/>
 				<button
+					aria-label='Search button'
 					className='absolute right-6 top-1/2 -translate-y-1/2'
 					type='submit'
 				>
