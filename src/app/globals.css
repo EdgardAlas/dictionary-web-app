@@ -25,14 +25,19 @@
 
 body {
 	--font-family: var(--font-sans);
+	--text-color: var(--black-200);
+	--select-shadow-color: rgba(0, 0, 0, 0.1);
+
 	font-family: var(--font-family);
 
 	background: var(--background);
+	color: var(--text-color);
 
 	transition:
 		background 0.3s,
 		color 0.3s,
-		fill 0.3s;
+		fill 0.3s,
+		backgrond-color 0.3s;
 }
 
 .sans {
@@ -49,4 +54,6 @@ body {
 
 .dark {
 	--background: var(--black-400);
+	--text-color: var(--white-100);
+	--select-shadow-color: var(--purple-100);
 }

@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Inconsolata, Inter, Lora } from 'next/font/google';
 import './globals.css';
 import { cookies } from 'next/headers';
+import { FontTypes } from '@/components/ui/font-switcher';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const lora = Lora({ subsets: ['latin'], variable: '--font-serif' });
@@ -23,6 +24,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const theme = cookies().get('theme')?.value;
+	const font = (cookies().get('font')?.value ?? 'sans') as FontTypes;
 
 	return (
 		<html lang='en'>
@@ -31,10 +33,11 @@ export default function RootLayout({
 					inter.variable,
 					lora.variable,
 					inconsolata.variable,
-					theme
+					theme,
+					font
 				)}
 			>
-				<Container as='main' className='py-[3.625rem]'>
+				<Container as='main' className='py-[1.4375rem] md:py-[3.625rem]'>
 					{children}
 				</Container>
 			</body>
